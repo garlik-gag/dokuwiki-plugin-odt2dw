@@ -1,0 +1,7 @@
+base   odt2dw
+author Greg BELLAMY
+email  garlik.crx@gmail.com
+date   2012-01-05
+name   odt2dw plugin
+desc   create a dokuwiki page from an odt file
+url    http://www.dokuwiki.org/plugin:odt2dw
