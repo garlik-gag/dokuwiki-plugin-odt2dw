@@ -31,7 +31,8 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     // Check if the current action is in the action allow table
     if ( strpos( $this->getConf('formDisplayRule'), $event->data) === false ) return;
     // Check if the page exists
-    if ( page_exists( $ID ) ) return;
+    if ( page_exists( $ID ) && $event->data != "odt2dw" ) return;
+    if ( page_exists( $ID ) ) echo p_render('xhtml',p_get_instructions( $this->getLang( 'formPageExistMessage' ) ), $info );
     // Check auth user can edit this page
     if ( auth_quickaclcheck( $ID ) < AUTH_EDIT ) return;
     // If all check is ok, display the form
@@ -318,13 +319,13 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
   }
 
   function _set_xsltProcessor(){
-    ### _set_xsltProcessor : set all xslt param regarding the dokuwiki plugin installed and language value ###
+    ### _set_xsltProcessor : set all xslt param regarding the dokuwiki plugin installed ###
     # OUTPUT :
     #   * true -> process successfully
     #   * false -> something wrong; using _msg to display what's wrong
     # _msg info report ( debugLvl >= 2 ) display message about active plugin
 
-    // Gag : I think it s a nasty way to check plugin - must be rewrite but i don t know how
+    // Gag : I think it s a Nasty way to check plugin - must be rewrite but i don t know how
     $tmp_plugin_lst = plugin_list();
     if ( ! $this->XSLT->importStylesheet( $this->XSL ) ) return $this->_msg('er_xslt_invalid');
     foreach ( array('numberedheadings') as $param ) if ( array_search( $param, $tmp_plugin_lst ) !== false ) {
@@ -332,7 +333,7 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
       // _msg info report
       $this->_msg( array( 'ok_infoPlugin', $param ), 1 );
     }
-    // Set the language param
+    //
     foreach ( array('subtable_message') as $lang_elt ) if ( ! $this->XSLT->setParameter( '', $lang_elt, $this->getLang('xsl_'.$lang_elt ) ) ) $this->_msg( array( 'inf_xslt_lang', $param ), 0 );
     return true;
   }

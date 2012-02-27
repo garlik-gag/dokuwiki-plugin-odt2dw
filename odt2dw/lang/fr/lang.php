@@ -8,6 +8,9 @@
 $lang['formLegend']  = "Import d'un fichier odt";
 $lang['formIntroMessage'] = "Vous pouvez créer cette page en y **important un fichier openOffice Writer** présent sur votre ordinateur.\\\
 Un document confectionné en respectant au plus près les bonnes pratiques du traitement de texte garantira une bonne restitution dans dokuwiki.";
+$lang['formPageExistMessage'] = "**ATTENTION!!! Cette page existe déjà. Si vous validez le formulaire de téléversement, la page actuelle sera archivée et la page chargée prendra sa place.**
+
+";
 
 $lang['parserSummary'] = "Fichier généré par le plugin odt2dw à partir du fichier ";
 $lang['parserOriginalFile'] = "Version originale";
