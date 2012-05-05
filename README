@@ -1,0 +1,18 @@
+odt2dw is a plugin for dokuwiki
+
+More information about odt2dw at http://www.dokuwiki.org/plugin:odt2dw
+More information about dokuwiki at http://www.dokuwiki.org
+
+This plugin works with Apache HTTP Server on Linux Environment.
+Apache versions tested : V.5.2, V.5.3
+
+I didn't test it on other HTTP Server.
+
+This plugin use :
+  * php xsltProcessor class (ex : php-xml, php5-xsl)
+  * php zipArchive class
+
+Change Log :
+
+v0.05 beta
+  * Fixe : display an error if the parserUploadDir directory don't exists. Now it create it.

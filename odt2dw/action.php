@@ -4,7 +4,7 @@
  *
  * @license     GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author      Greg BELLAMY <garlik.crx@gmail.com> [Gag]
- * @version     0.03beta
+ * @version     0.04beta
  */
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
@@ -23,10 +23,10 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
   }
 
   function _render(&$event, $param) {
-    ### _render : displays the upload form in the pages according to the authorized action
+    ### _render : displays the upload form in the pages according to authorized action
     # INPUT : it's a dokuwiki event function
     # OUTPUT : void
-    # DISPLAY : the upload action
+    # DISPLAY : upload form
     global $ID;
     // Check if the current action is in the action allow table
     if ( strpos( $this->getConf('formDisplayRule'), $event->data) === false ) return;
@@ -79,11 +79,11 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     if ( $_FILES['odtFile'] ) {
       // If parse work, change action to defined one in conf/local.php file
       $retour = $this->_odt2dw();
-      # Clear the environnement of temp file
+      # Delete temp file
       $this->_purge_env();
-      //if ( $retour ) return;
     }
-    //otherwise the action stay odt2dw -> the display form hook will be call when render time
+    //if the file is parsing correctly, change the action to that defined in the conf
+    //otherwise the action stay odt2dw -> the display form hook will be call by render trigger
     if ( $retour === true ) {
       $event->data = $this->getConf('parserPostDisplay');
     } else {
@@ -285,7 +285,7 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     // Create an unique temp work dir name
     while ( file_exists( $this->uploadDir = $this->getConf( 'parserUploadDir' ).rand( 10000, 100000 ) ) ) {};
     // Create the directory
-    if ( ! mkdir( $this->uploadDir ) ) return $this->_msg( 'er_odtFile_tmpDir' );
+    if ( ! mkdir( $this->uploadDir, 0777, true ) ) return $this->_msg( 'er_odtFile_tmpDir' );
     // Move the upload file into the work directory
     $this->odtFileName = $_FILES['odtFile']['name'];
     $this->odtFile = $this->uploadDir.'/'.$this->odtFileName;
