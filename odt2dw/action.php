@@ -4,7 +4,7 @@
  *
  * @license     GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author      Greg BELLAMY <garlik.crx@gmail.com> [Gag]
- * @version     0.04beta
+ * @version     0.05beta
  */
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
