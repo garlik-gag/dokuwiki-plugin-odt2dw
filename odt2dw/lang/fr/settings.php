@@ -15,3 +15,4 @@ $lang['parserXslFile']            = "Nom de la feuille de style xsl";
 $lang['parserLinkToOriginalFile'] = "Créer un lien vers le fichier original";
 $lang['parserCoreTimeOut']        = "Délais en seconde du time out à utiliser lors de la transformation (300 par défaut)";
 $lang['parserUploadDir']          = "Chemin où sont stockés les fichiers uploadés";
+$lang['parserMimeTypeAuthorized'] = "<div>Mimetypes authorisés pour le téléversement de fichiers odt</div><div>Par défaut : <tt>application/vnd.oasis.opendocument.text application/octetstream</tt></div><div><b>application/vnd.oasis.opendocument.text</b> correspond au mimetype par défaut</div><div><b>application/octetstream</b> correspond au mimetype transmis par un client Chrome sous Windows XP</div><div>Ajoutez les mimetypes manquant le cas échéant</div><div>Laissez le champs vide pour désactiver ce contrôle.</div>";

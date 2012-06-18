@@ -21,6 +21,7 @@ $lang['ok_infoPlugin']  = "Plugin installé";
 $lang['ok_img']         = "Image correctement traitée";
 $lang['ok_unzip']       = "Décompression effectuée avec succés";
 
+$lang['inf_acl_upload'] = "Vous ne disposez pas des droits suffisants pour stocker le fichier original sur le wiki. Ce fichier n'est donc pas conservé sur le serveur.";
 $lang['inf_xslt_lang'] = "Traduction inexistante pour le message utilisé dans la feuille xsl. Valeur par défaut utilisée";
 $lang['inf_xslt_param'] = "Impossible d'ajuster le paramètre du processeur xsl. Valeur par défaut utilisée";
 

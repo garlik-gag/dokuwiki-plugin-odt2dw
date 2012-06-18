@@ -15,3 +15,4 @@ $lang['parserXslFile']            = "Name of the xslFile use to transform";
 $lang['parserLinkToOriginalFile'] = "Create a link to original file into the dokuwiki page";
 $lang['parserCoreTimeOut']        = "Special TimeOut used when parsing the odt content by xslt (default : 300).";
 $lang['parserUploadDir']          = "Path where the file will be upload";
+$lang['parserMimeTypeAuthorized'] = "<div>Mimetypes authorized to upload odt files</div><div>Default : <tt>application/vnd.oasis.opendocument.text application/octetstream</tt></div><div><b>application/vnd.oasis.opendocument.text</b> default common mimetype</div><div><b>application/octetstream</b> mimetype used by Chrome on Windows XP</div><div>Add missing mimetypes if necessary</div><div>Let empty to disabled the control.</div>";

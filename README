@@ -6,13 +6,21 @@ More information about dokuwiki at http://www.dokuwiki.org
 This plugin works with Apache HTTP Server on Linux Environment.
 Apache versions tested : V.5.2, V.5.3
 
-I didn't test it on other HTTP Server.
+I don't test it on other HTTP Server.
 
-This plugin use :
+This plugin need :
   * php xsltProcessor class (ex : php-xml, php5-xsl)
   * php zipArchive class
 
+ToDo :
+  * Fixe parserPostDisplay : when edit or preview are choose,
+    it display a blank page although the data has correctly been saved.
+
 Change Log :
 
+v0.06 beta
+  * Fixe : some small fixes to the english messages
+  * Fixe : check for mime type was too specific. it could be set in config panel
+  * Fixe : submit button was not translated and stay in french. His value depend of the dokuwiki lang file now.
 v0.05 beta
-  * Fixe : display an error if the parserUploadDir directory don't exists. Now it create it.
+  * Fixe : display an error if the parserUploadDir directory doesn't exists. Now it create it.

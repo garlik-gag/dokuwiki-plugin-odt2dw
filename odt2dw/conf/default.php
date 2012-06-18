@@ -15,3 +15,5 @@ $conf['parserXslFile']            = 'odt2dw.xsl';       // name of the xslpage u
 $conf['parserLinkToOriginalFile'] = 1;                  // display a link to the original odtFile 0=no link; 1=link
 $conf['parserCoreTimeOut']        = 300;                // the parserCoreTimeOut give specific timeout to parse the xmlFile with the xslFile. Bigger is the odtFile, longer will the parser take.
 $conf['parserUploadDir']          = '/tmp/odt2dw/';     // systeme path where the file will be move after upload but before parse
+$conf['parserMimeTypeAuthorized'] = 'application/vnd.oasis.opendocument.text
+application/octetstream'; // mimetype authorized to be upload
