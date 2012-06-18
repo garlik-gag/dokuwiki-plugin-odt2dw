@@ -22,6 +22,7 @@ $lang['ok_infoplug-in']  = "Geïnstalleerde plug-in";
 $lang['ok_img']         = "Afbeelding correct verwerkt";
 $lang['ok_unzip']       = "Verwerking loopt";
 
+$lang['inf_acl_upload'] = "Je hebt onvoldoende toegangsrechten om het originele bestand op te slaan in de wiki, het bestand wordt derhalve niet opgeslagen.";
 $lang['inf_xslt_lang'] = "Geen translatie beschikbaar in stylesheet. De verstek waarde is toegepast.";
 $lang['inf_xslt_param'] = "Het was onmogelijk de parameter in te stellen op de xsltProcessor. De verstek waarde is toegepast";
 
