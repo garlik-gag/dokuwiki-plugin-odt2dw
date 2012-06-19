@@ -16,3 +16,4 @@ $lang['parserXslFile']            = "Naam van het xsl bestand dat gebruikt wordt
 $lang['parserLinkToOriginalFile'] = "Maak een link naar het originele bestand in de DokuWiki pagina";
 $lang['parserCoreTimeOut']        = "Speciale TimeOut gebruikt tijdens ontleden van de odt inhoud met xslt (verstek waarde : 300).";
 $lang['parserUploadDir']          = "Pad waar het bestand wordt opgeslagen";
+$lang['parserMimeTypeAuthorized'] = "<div>Mimetypes welke zijn toegestaan voor odt bestanden</div><div>verstekwaarde : <tt>application/vnd.oasis.opendocument.text application/octetstream</tt></div><div><b>application/vnd.oasis.opendocument.text</b> algemeen gebruikte mimetype</div><div><b>application/octetstream</b> mimetype wordt door Chrome op Windows XP gebruikt</div><div>Voeg ontbrekende mimetypes toe indien nodig</div><div>Laat leeg om de controle niet uit te voeren.</div>";
