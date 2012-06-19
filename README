@@ -14,13 +14,14 @@ This plugin need :
 
 ToDo :
   * Fixe parserPostDisplay : when edit or preview are choose,
-    it display a blank page although the data has correctly been saved.
+    it display a empty page although the data has correctly been saved.
 
 Change Log :
 
 v0.06 beta
   * Fixe : some small fixes to the english messages
-  * Fixe : check for mime type was too specific. it could be set in config panel
-  * Fixe : submit button was not translated and stay in french. His value depend of the dokuwiki lang file now.
+  * Add  : message translation in Dutch
+  * Fixe : check for mime type was too specific : It could be set in config panel
+  * Fixe : submit button was not translated and stay in french : His value depend of the dokuwiki lang file now.
 v0.05 beta
   * Fixe : display an error if the parserUploadDir directory doesn't exists. Now it create it.
