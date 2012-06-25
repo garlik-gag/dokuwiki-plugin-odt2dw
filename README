@@ -12,16 +12,15 @@ This plugin need :
   * php xsltProcessor class (ex : php-xml, php5-xsl)
   * php zipArchive class
 
-ToDo :
-  * Fixe parserPostDisplay : when edit or preview are choose,
-    it display a empty page although the data has correctly been saved.
-
 Change Log :
 
+v0.07 beta
+  * Fixe : parserPostDisplay now works with choice edit or preview
+  * Fixe : better class existence control
 v0.06 beta
   * Fixe : some small fixes to the english messages
-  * Add  : message translation in Dutch
+  * Add  : message translation in Dutch (By mprins)
   * Fixe : check for mime type was too specific : It could be set in config panel
   * Fixe : submit button was not translated and stay in french : His value depend of the dokuwiki lang file now.
 v0.05 beta
-  * Fixe : display an error if the parserUploadDir directory doesn't exists. Now it create it.
+  * Fixe : display an error if the parserUploadDir directory doesn't exists. Now it will be create if needed.
