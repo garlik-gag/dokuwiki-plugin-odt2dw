@@ -4,7 +4,7 @@
  *
  * @license     GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author      Greg BELLAMY <garlik.crx@gmail.com> [Gag]
- * @version     0.05beta
+ * @version     0.07beta
  */
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
@@ -165,11 +165,15 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     if ( ! file_exists($this->xslFile) ) return $this->_msg('er_xslFile_exists');
     if ( ! is_file($this->xslFile) ) return $this->_msg('er_xslFile_isfile');
 
+    // Class Control
+    if ( ! class_exists( XSLTProcessor ) ) return $this->_msg('er_class_xsltProcessor');
+    if ( ! class_exists( ZipArchive ) ) return $this->_msg('er_class_zipArchive');
+    if ( ! class_exists( DOMDocument ) ) return $this->_msg('er_class_domDocument');
     // Create instance of needed class
-    if ( ! ($this->XSLT = new XSLTProcessor ) ) return $this->_msg('er_class_xsltProcessor');
-    if ( ! ($this->ZIP = new ZipArchive ) ) return $this->_msg('er_class_zipArchive');
-    if ( ! ($this->XSL = new DOMDocument ) ) return $this->_msg('er_class_domDocument');
-    if ( ! ($this->XML = new DOMDocument ) ) return $this->_msg('er_class_domDocument');
+    $this->XSLT = new XSLTProcessor;
+    $this->ZIP  = new ZipArchive;
+    $this->XSL  = new DOMDocument;
+    $this->XML  = new DOMDocument;
 
     // Load the xslFile
     if ( ! ($this->XSL->load( $this->xslFile ) ) ) return $this->_msg('er_loadXsl');
@@ -344,6 +348,7 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     # OUTPUT :
     #   * true -> process successfully
     #   * false -> something wrong; using _msg to display what's wrong
+    global $INFO;
     // Save the content in data/page
     saveWikiText( $this->pageName, $this->result, $this->getLang( 'parserSummary' ).$this->odtFileName );
     if ( ! page_exists($this->pageName) ) return $this->_msg('er_apply_content');
@@ -365,6 +370,8 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
       // If not allowed to upload, display a message.
       $this->_msg( 'inf_acl_upload', 0, true );
     }
+    # Refresh info about the current page (see doku.php where $INFO is initiate) - Needed for edit or preview "parserPostDisplay" option
+    $INFO = pageinfo();
     return true;
   }
 
