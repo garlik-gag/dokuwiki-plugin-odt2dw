@@ -8,6 +8,7 @@
 $conf['debugLvl']                 = 1;                  // debug mode level -- more verbose ( 0: no display; 1: display error msg; 3: display&log error msg all msg; 3: display&log all )
 $conf['logFile']                  = '';                 // log File where $this->_msg write with debugLvl >= 2
 $conf['formDisplayRule']          = 'odt2dw,edit,show'; // which action will display the odt2dw upload form in newpage
+$conf['showimportbutton']         = 1;
 $conf['formIntroMessage']         = 'default';          // personnalized message - if "default", display the language default message
 $conf['formMaxFileSize']          = 2097152;            // maxsize for upload odtFile
 $conf['parserPostDisplay']        = 'show';             // which action perform after parsing the odt file

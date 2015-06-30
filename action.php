@@ -20,6 +20,34 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     $controller->register_hook('ACTION_ACT_PREPROCESS', 'BEFORE', $this, '_parser', array());
     // Display form hook before the wiki page (on top); Maybe create a param to display the form after the page
     $controller->register_hook('TPL_ACT_RENDER', 'BEFORE', $this, '_render', array());
+    $controller->register_hook('TEMPLATE_PAGETOOLS_DISPLAY', 'BEFORE', $this, 'addbutton', array());
+  }
+
+  /**
+   * Add 'import odt'-button to pagetools
+   *
+   * @param Doku_Event $event
+   * @param mixed      $param not defined
+   */
+  public function addbutton(&$event, $param) {
+    global $ID, $REV, $conf;
+
+    if($this->getConf('showimportbutton') && $event->data['view'] == 'main') {
+      $params = array('do' => 'odt2dw');
+      if($REV) $params['rev'] = $REV;
+
+      switch($conf['template']) {
+      case 'dokuwiki':
+      case 'arago':
+	$event->data['items']['import_odt'] =
+	  '<li>'
+	  .'<a href='.wl($ID, $params).'  class="action import_odt" rel="nofollow" title="'.$this->getLang('import_odt_button').'">'
+	  .'<span>'.$this->getLang('import_odt_button').'</span>'
+	  .'</a>'
+	  .'</li>';
+	break;
+      }
+    }
   }
 
   function _render(&$event, $param) {

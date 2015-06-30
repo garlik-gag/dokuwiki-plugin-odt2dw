@@ -12,6 +12,7 @@ More the file follows the word processing rules, better will be the result";
 $lang['formPageExistMessage'] = "**WARNING!!! This page already exist. If you upload an odtFile, the current page will be archived.**
 
 ";
+$lang['import_odt_button'] = "ODT import";
 
 $lang['parserSummary'] = "File build by odt2dw plugin from file";
 $lang['parserOriginalFile'] = "Original file";
