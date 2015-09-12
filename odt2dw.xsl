@@ -282,6 +282,9 @@ Source :
     <xsl:when test="ancestor::table:table-header-rows">
     <xsl:text disable-output-escaping="yes">^</xsl:text>
     </xsl:when>
+    <xsl:when test="text:p/@text:style-name = 'Table_20_Heading'">
+    <xsl:text disable-output-escaping="yes">^</xsl:text>
+    </xsl:when>
     <xsl:otherwise>
     <xsl:text disable-output-escaping="yes">|</xsl:text>
     </xsl:otherwise>
