@@ -383,12 +383,12 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
 
     global $ID;
     $imgs = array();
-    if ( preg_match_all( '|{{((?:[^/]+/)+)([0-9A-F]+)(\.[a-z]+)(\?[0-9]+(?:x[0-9]+)?)?}}|', $this->result, $imgs, PREG_SET_ORDER ) ) {
+    if ( preg_match_all( '|{{((?:[^/}]+/)+)([0-9A-F]+)(\.[a-z]+)(\?[0-9]+(?:x[0-9]+)?)?}}|', $this->result, $imgs, PREG_SET_ORDER ) ) {
       if ( auth_quickaclcheck( $ID ) < AUTH_UPLOAD ) return $this->_msg( 'er_acl_upload' );
       $this->err['ok'] = array();
       foreach ( $imgs as $key => $value ) {
         set_time_limit(20);
-        $pictpath = $value[1]
+        $pictpath = $value[1];
         $pict = $value[2].$value[3];
         $ext  = $value[3];
         $other = $value[4];
