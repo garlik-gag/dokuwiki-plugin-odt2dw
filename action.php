@@ -314,9 +314,9 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     // Delete each file extracted for the uploaded file
     if ( $this->file_extract ) foreach ($this->file_extract as $file) if ( file_exists( $file ) ) if ( ! @unlink( $file ) ) $this->_msg( array( 'er_pg_file', $file ) );
     // Delete each image would be rename and not move to the wiki
-    if ( $this->file_import ) foreach ( $this->file_import as $file ) if ( file_exists( $this->uploadDir.'/Pictures/'.$file ) ) if ( ! @unlink( $this->uploadDir.'/Pictures/'.$file ) ) $this->_msg( array( 'er_pg_file', $this->uploadDir.'/Pictures/'.$file ) );
+    if ( $this->file_import ) foreach ( $this->file_import as $file ) if ( file_exists( $this->uploadDir.'/'.$this->pictpath.'/'.$file ) ) if ( ! @unlink( $this->uploadDir.'/'.$this->pictpath.'/'.$file ) ) $this->_msg( array( 'er_pg_file', $this->uploadDir.'/'.$this->pictpath.'/'.$file ) );
     // Delete the Pictures directory
-    if ( file_exists( $this->uploadDir.'/Pictures') ) if ( ! @rmdir( $this->uploadDir.'/Pictures' ) ) $this->_msg( array( 'er_pg_dir', $this->uploadDir.'/Pictures' ) );
+    if ( file_exists( $this->uploadDir.'/'.$this->pictpath) ) if ( ! @rmdir( $this->uploadDir.'/'.$this->pictpath ) ) $this->_msg( array( 'er_pg_dir', $this->uploadDir.'/'.$this->pictpath ) );
     // Than delete the temporary directory
     if ( file_exists( $this->uploadDir ) ) if ( ! @rmdir( $this->uploadDir ) ) $this->_msg( array( 'er_pg_dir', $this->uploadDir ) );
     // Set back default timeOut
@@ -359,8 +359,8 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
       if ( ! ( file_exists( $destDir ) || mkdir( $destDir ) ) ) return $this->_msg( array( 'er_apply_dirCreate' ) );
       if ( $this->file_import ) foreach ( $this->file_import as $pict ) {
         $destFile = mediaFN( $this->nsName.':'.$pict );
-        list( $ext, $mime ) = mimetype( $this->uploadDir.'/Pictures/'.$pict );
-        if ( media_upload_finish($this->uploadDir.'/Pictures/'.$pict, $destFile, $this->nsName, $mime, @file_exists($destFile), 'rename' ) != $this->nsName ) return $this->_msg( array( 'er_apply_img', $this->uploadDir.'/Pictures/'.$pict ) );
+        list( $ext, $mime ) = mimetype( $this->uploadDir.'/'.$this->pictpath.'/'.$pict );
+        if ( media_upload_finish($this->uploadDir.'/'.$this->pictpath.'/'.$pict, $destFile, $this->nsName, $mime, @file_exists($destFile), 'rename' ) != $this->nsName ) return $this->_msg( array( 'er_apply_img', $this->uploadDir.'/'.$this->pictpath.'/'.$pict ) );
       }
       // Keep the original file (import the upload file in the mediaManager)
       $destFile = mediaFN( $this->nsName.':'.$this->odtFileName );
@@ -383,19 +383,19 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
 
     global $ID;
     $imgs = array();
-    if ( preg_match_all( '|{{((?:[^/}]+/)+)([0-9A-F]+)(\.[a-z]+)(\?[0-9]+(?:x[0-9]+)?)?}}|', $this->result, $imgs, PREG_SET_ORDER ) ) {
+    if ( preg_match_all( '|{{((?:[^/}]+/)*[^/}]+)/([0-9a-zA-Z]+)(\.[a-z]+)(\?[0-9]+(?:x[0-9]+)?)?}}|', $this->result, $imgs, PREG_SET_ORDER ) ) {
       if ( auth_quickaclcheck( $ID ) < AUTH_UPLOAD ) return $this->_msg( 'er_acl_upload' );
       $this->err['ok'] = array();
       foreach ( $imgs as $key => $value ) {
         set_time_limit(20);
-        $pictpath = $value[1];
+        $this->pictpath = $value[1];
         $pict = $value[2].$value[3];
         $ext  = $value[3];
         $other = $value[4];
-        if ( $this->_unzip($pictpath.$pict) ) {
+        if ( $this->_unzip($this->pictpath.'/'.$pict) ) {
           $newname = noNS($this->pageName).'_Image_'.$key.$ext;
-          if ( rename( $this->uploadDir.'/'.$pictpath.$pict, $this->uploadDir.'/'.$pictpath.$newname ) ) {
-            $this->result = str_replace( '{{'.$pictpath.$pict.$other.'}}' , '{{'.$newname.$other.'}}' , $this->result );
+          if ( rename( $this->uploadDir.'/'.$this->pictpath.'/'.$pict, $this->uploadDir.'/'.$this->pictpath.'/'.$newname ) ) {
+            $this->result = str_replace( '{{'.$this->pictpath.'/'.$pict.$other.'}}' , '{{'.$newname.$other.'}}' , $this->result );
             $this->file_import[] = $newname;
             if ( $this->debug ) $this->err['ok'][] = $pict.' : '.$newname;
           } else $this->err[$pict] = 'rename';
