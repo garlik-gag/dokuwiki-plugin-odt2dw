@@ -328,7 +328,7 @@ Source :
   <xsl:template match="//draw:frame">
     <xsl:param name="cmtopx" value="37.795275591"/>
     <xsl:text disable-output-escaping="yes" >{{</xsl:text>
-    <xsl:value-of select="substring-after(draw:image/@xlink:href,'/')"/>
+    <xsl:value-of select="draw:image/@xlink:href"/>
     <xsl:if test="not (@svg:width = '' or @svg:height = '')">
       <xsl:choose><!-- check cm, px, in, etc... -->
         <xsl:when test="contains( @svg:width,'cm' )">?<xsl:value-of select="floor(number(substring-before(@svg:width,'cm')) * 37.795275591)"/><!--x<xsl:value-of select="floor(number(substring-before(@svg:height,'cm')) * 37.795275591)"/>--></xsl:when>
