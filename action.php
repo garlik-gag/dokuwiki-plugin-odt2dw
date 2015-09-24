@@ -4,7 +4,7 @@
  *
  * @license     GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author      Greg BELLAMY <garlik.crx@gmail.com> [Gag]
- * @version     0.07beta
+ * @version     0.08beta
  */
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
@@ -356,7 +356,7 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     if ( auth_quickaclcheck($ID) >= AUTH_UPLOAD ) {
       // Import the image file in the mediaManager (data/media)
       $destDir = mediaFN( $this->nsName );
-      if ( ! ( file_exists( $destDir ) || mkdir( $destDir ) ) ) return $this->_msg( array( 'er_apply_dirCreate' ) );
+      if ( ! ( file_exists( $destDir ) || mkdir( $destDir, 0777, true ) ) ) return $this->_msg( array( 'er_apply_dirCreate' ) );
       if ( $this->file_import ) foreach ( $this->file_import as $pict ) {
         $destFile = mediaFN( $this->nsName.':'.$pict );
         list( $ext, $mime ) = mimetype( $this->uploadDir.'/'.$this->pictpath.'/'.$pict );
