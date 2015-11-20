@@ -381,6 +381,12 @@ Source :
     </xsl:if>
   </xsl:template>
 
+  <!-- Display spacing #16 -->
+  <xsl:template match="//text:s">
+    <xsl:text disable-output-escaping="yes"> </xsl:text>
+  </xsl:template>
+
+
   <!-- Boucle affichant une suite de n éléments identiques où n=fin-debut -->
   <xsl:template name="boucle">
     <xsl:param name="debut" select="0" />
