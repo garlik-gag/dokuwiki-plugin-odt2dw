@@ -14,6 +14,9 @@ This plugin need :
 
 Change Log :
 
+v0.09 beta
+  * Adjust method signatures to match parent
+  * Add import button
 v0.08 beta
   * Fixe : bug #9
   * Fixe : bug #14
