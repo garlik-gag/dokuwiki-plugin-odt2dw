@@ -12,6 +12,7 @@ Das Resultat wird umso besser, je besser die Textverarbeitungsregeln eingehalten
 $lang['formPageExistMessage'] = "**WARNUNG!!! Diese Seite exisitert bereits. Wenn Sie eine odt-Datei hochladen, wird die aktuelle Seite archiviert.**
 
 ";
+$lang['import_odt_button']     = 'ODT importieren';
 
 $lang['parserSummary'] = "Datei wurde durch odt2dw-Plugin erzeugt";
 $lang['parserOriginalFile'] = "Originaldatei";
