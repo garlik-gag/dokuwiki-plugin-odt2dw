@@ -15,7 +15,7 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
   /**
   * Registers a callback function for a given event
   */
-  function register($controller) {
+  function register(Doku_Event_Handler $controller) {
     // OdtFile Parser hook
     $controller->register_hook('ACTION_ACT_PREPROCESS', 'BEFORE', $this, '_parser', array());
     // Display form hook before the wiki page (on top); Maybe create a param to display the form after the page
