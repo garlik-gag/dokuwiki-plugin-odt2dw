@@ -421,7 +421,12 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
         $ext  = $value[3];
         $other = $value[4];
         if ( $this->_unzip($this->pictpath.'/'.$pict) ) {
-          $newname = noNS($this->pageName).'_Image_'.$key.$ext;
+	  # Do not overwrite existing images
+	  $newname = "";
+          do {
+            $newname = noNS($this->pageName).'_image_'.$key.$ext;
+            $key = $key + 1;
+          } while ( file_exists( mediaFN( $this->nsName.':'.$newname) ) );
           if ( rename( $this->uploadDir.'/'.$this->pictpath.'/'.$pict, $this->uploadDir.'/'.$this->pictpath.'/'.$newname ) ) {
             $this->result = str_replace( '{{'.$this->pictpath.'/'.$pict.$other.'}}' , '{{'.$newname.$other.'}}' , $this->result );
             $this->file_import[] = $newname;
