@@ -421,16 +421,20 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
         $ext  = $value[3];
         $other = $value[4];
         if ( $this->_unzip($this->pictpath.'/'.$pict) ) {
-	  # Do not overwrite existing images
-	  $newname = "";
+          # Do not overwrite existing images
+	  # Hash to see if files are identical, prevents multiple files with same content but different names in media manager
+          $newFileHash = hash_file('sha512', $this->uploadDir.'/'.$this->pictpath.'/'.$pict);
+          $newFileName = '';
           do {
-            $newname = noNS($this->pageName).'_image_'.$key.$ext;
+            $newFileName = noNS($this->pageName).'_image_'.$key.$ext;
+            $existingFile = mediaFN( $this->nsName.':'.$newFileName);
             $key = $key + 1;
-          } while ( file_exists( mediaFN( $this->nsName.':'.$newname) ) );
-          if ( rename( $this->uploadDir.'/'.$this->pictpath.'/'.$pict, $this->uploadDir.'/'.$this->pictpath.'/'.$newname ) ) {
-            $this->result = str_replace( '{{'.$this->pictpath.'/'.$pict.$other.'}}' , '{{'.$newname.$other.'}}' , $this->result );
-            $this->file_import[] = $newname;
-            if ( $this->debug ) $this->err['ok'][] = $pict.' : '.$newname;
+          } while ( file_exists( $existingFile ) && hash_file('sha512', $existingFile) != $newFileHash );
+
+          if ( rename( $this->uploadDir.'/'.$this->pictpath.'/'.$pict, $this->uploadDir.'/'.$this->pictpath.'/'.$newFileName ) ) {
+            $this->result = str_replace( '{{'.$this->pictpath.'/'.$pict.$other.'}}' , '{{'.$newFileName.$other.'}}' , $this->result );
+            $this->file_import[] = $newFileName;
+            if ( $this->debug ) $this->err['ok'][] = $pict.' : '.$newFileName;
           } else $this->err[$pict] = 'rename';
         } else $this->err[$pict] = 'unzip';
       }
