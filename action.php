@@ -194,9 +194,9 @@ class action_plugin_odt2dw extends DokuWiki_Action_Plugin {
     if ( ! is_file($this->xslFile) ) return $this->_msg('er_xslFile_isfile');
 
     // Class Control
-    if ( ! class_exists( XSLTProcessor ) ) return $this->_msg('er_class_xsltProcessor');
-    if ( ! class_exists( ZipArchive ) ) return $this->_msg('er_class_zipArchive');
-    if ( ! class_exists( DOMDocument ) ) return $this->_msg('er_class_domDocument');
+    if ( ! class_exists( 'XSLTProcessor' ) ) return $this->_msg('er_class_xsltProcessor');
+    if ( ! class_exists( 'ZipArchive' ) ) return $this->_msg('er_class_zipArchive');
+    if ( ! class_exists( 'DOMDocument' ) ) return $this->_msg('er_class_domDocument');
     // Create instance of needed class
     $this->XSLT = new XSLTProcessor;
     $this->ZIP  = new ZipArchive;
